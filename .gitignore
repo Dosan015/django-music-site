@@ -1,0 +1,11 @@
+.env
+*.jpeg
+*.jpg
+*.mp3
+*.pyc
+*.sqlite3
+media/**
+/static/admin/**
+*.sql
+static/rest_framework/**
+/img/*

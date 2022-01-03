@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ page_title }}
+{% endblock %}
+
+{% block extra_head %}
+{% endblock extra_head %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+            {% for obj in person_list %}
+            <div class="col-lg-4">
+                <a class="ahref" href="{{ obj.get_absolute_url }}">
+                    <div class="card">
+                        <img src="{{ obj.img.url }}" class="card-img-top" alt="{{ obj.name_slug }}" ></img>
+                        <div class="card-body text-center">
+                            <blockquote class="blockquote">
+                                <p>{{ obj }}</p>
+                              </blockquote>
+                        </div>
+                     </div>
+                </a>
+                </div>
+            {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+{{ page_title }}
+{% endblock %}
+
+{% block extra_head %} 
+{% endblock extra_head %}
+
+{% block content %}
+
+<div class="container">
+
+   <div class="row justify-content-center">
+      <div class="col-lg-6">
+         <div class="card" style="margin: 1rem 0;">
+            <img src="{{ list.img.url }}" class="card-img-top" alt="{{ audio.full_name_slug }}" ></img>
+            <div class="card-body text-center">
+               <h2>{{ list }}</h2>
+            </div>
+         </div>
+   </div>
+   
+   <div class="row" >
+      {% for audio in audios %}
+      <div class="col-lg-4">
+         {% include 'home/player_layout.html' %}
+      </div>
+      {% endfor %}
+   </div>
+</div>
+<br/>
+
+{% endblock %}

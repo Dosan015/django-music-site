@@ -1,0 +1,79 @@
+
+<div class="item-song" id="song{{ audio.id }}" >
+    <table style="width: 100%">
+      <tr>
+	      <td class="play" id="{{ audio.id }}" data-file="{{ audio.file.url }}"> 
+           <span class="i i-play2"></span>
+        </td>
+        <td class="artist-title">
+          <a class="block" href="{{ audio.get_absolute_url }} ">
+            <b>{{ audio.singer }}</b><br/>
+            {{ audio.name }}
+          </a>
+
+          {% if audio.poet or  audio.composer %}
+          {% if audio.poet ==  audio.composer%}
+          <div> 
+            <small>
+              <a href="{% url 'poet' audio.poet.first_name_slug audio.poet.last_name_slug %}">
+                Әні сөзі: {{audio.composer.first_name | slice:'1'  }}. {{ audio.composer.last_name }}
+              </a>
+            </small>
+          </div>
+        {% else %}
+        <div class="td-composer">  
+           {% if audio.composer %}
+           <small>
+              <a href="{% url 'composer' audio.composer.first_name_slug audio.composer.last_name_slug %}">
+                Әні: {{audio.composer.first_name | slice:'1'  }}. {{ audio.composer.last_name }}
+              </a>
+            </small>
+            {% endif %}
+            {% if audio.poet %}
+            <small>
+              <a href="{% url 'poet' audio.poet.first_name_slug audio.poet.last_name_slug %}"> 
+                Сөзі: {{ audio.poet.first_name | slice:'1' }}. {{ audio.poet.last_name }}
+              </a>	
+             </small>
+             {% endif %}
+        </div>
+        {% endif %}
+        {% endif %}
+       
+        </td>
+
+
+        <td class="dl">
+            <div><small id="minute{{ audio.id }}">{{ audio.min }}</small></div>
+            <a class="block" href="{% url 'download' audio.full_name_slug %}">
+              <span>
+                <svg fill="#6c757d" class="bi bi-download" width="32" height="32"><use xlink:href="#download"></use></svg>
+              </span>
+              <noscript>
+                <p>Жүктеу</p>
+              </noscript>
+            </a>
+            <div><small>Жүктелді: {{audio.count }}</small></div>
+        </td>
+
+
+      </tr>
+      <tr>
+        <td colspan="3" class="progress_wrap">
+          <div class="aic_line" id="seek{{ audio.id }}">
+            <div class="aic_ln aic_back_line"></div>
+
+            <div class="aic_ln aic_pl_wrap">
+              <div>
+                <div class="aic_ln bg-info" id="load{{ audio.id }}"></div>
+                  <div class="aic_ln aic_progress_line" id="progress{{ audio.id }}">
+                    <div class="aic_slider"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+</div>

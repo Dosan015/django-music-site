@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+{{ page_title }}
+{% endblock %}
+
+{% block extra_head %} 
+<meta name="description" content="Қазақша әндер {{ audio }}, {% for obj in objects %}{{ obj.singer.group_or_person.name }} {{ obj.name}}, {% endfor %}" />
+<meta name="keywords" content="{{ audio }}, {% for obj in objects %}{{ obj.singer.group_or_person.name }} {{ obj.name}}, {% endfor %}" />
+{% endblock extra_head %}
+
+{% block content %}
+<div class="container">
+   <div class="row justify-content-center">
+      <div class="col-lg-6">
+         <div class="card" style="margin: 1rem 0;">
+            <img src="{% if audio.img %} {{ audio.img.url }} {% else %} {{ singer.img.url }} {% endif %}" class="card-img-top" alt="{{ audio.full_name_slug }}" ></img>
+            <div class="">
+               {% include 'home/player_layout.html' %}
+            </div>
+         </div>
+      </div>    
+   </div>
+</div>
+<div class="container">
+   <div class="row" >
+      {% for audio in objects %}
+      <div class="col-lg-4">
+         {% include 'home/player_layout.html' %}
+      </div>
+      {% endfor %}
+   </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ page_title }}
+{% endblock %}
+
+{% block extra_head %}
+
+<meta name="description" content="Қазақша әндер  онлайн тыңдау және жүктеу {% for obj in objects %}{{ obj.singer.group_or_person.name }} {{ obj.name}}, {% endfor %}" />
+<meta name="keywords" content="{% for obj in objects %}{{ obj.singer.group_or_person.name }} {{ obj.name}}, {% endfor %}" />
+{% endblock extra_head %}
+
+{% block content %}
+
+<div class="container">
+        <div class="row mt-1">
+                {% for audio in audio_list %}
+                <div class="col-lg-4">
+                   {% include 'home/player_layout.html' %}
+                </div>
+                {% endfor %}
+             </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load insert_mark %}
+{% block title %}
+"{{ last_question }}" 
+{% endblock %}
+
+{% block extra_head %}
+{% endblock extra_head %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% if  object_list %}
+        <div class="col-12">
+            <h3> {{ last_question }}</h3>
+        </div>
+        <div class="col">
+        {% for result in object_list %}
+        <p>
+	<a href="{{ result.get_absolute_url }}">{% insert_mark result %}{{ insert_mark }}</a>
+        </p>
+        {% endfor %}
+        </div>
+        </ul>
+        {% else %}
+        <div class="col">
+            <h3>"{{ last_question }}" іздеуі бойынша табылмады... </h3>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
